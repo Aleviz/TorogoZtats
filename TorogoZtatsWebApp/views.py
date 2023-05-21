@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponse
 
+from TorogoZtatsWebApp.models import CanastaBasica
 
 def home(request):
-    return render(request, "TorogoZtatsWebApp/home.html")
+    canastas_basicas=CanastaBasica.objects.all()
+    return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
 
 def about(request):
     return render(request, "TorogoZtatsWebApp/about.html")

@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TorogoZtats - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'TorogoZtatsWebApp/img/favicon.ico' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/bootstrap.min.css' %}">
+    <!-- font awesome CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/font-awesome.min.css' %}">
+    <!-- meanmenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/meanmenu/meanmenu.min.css' %}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/normalize.css' %}">
+    <!-- Notika icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/notika-custom-icon.css' %}">
+    <!-- Data Table JS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/jquery.dataTables.min.css' %}">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/main.css' %}">
+    <!-- style CSS
+		============================================ -->
+
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/style.css' %}">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/css/responsive.css' %}">
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="width: 40%;">
+                    
+
+                    
+                    <ul class="nav navbar-nav active notika-top-nav">
+                        <li class="nav-item dropdown ">
+                            <a href="{% url 'Contacto' %}" role="button" aria-expanded="false" class="nav-link"><span><i class="notika-icon notika-phone"></i></span> Contacto</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav notika-top-nav">
+                        <li class="nav-item dropdown">
+                            <a href="{% url 'About' %}" role="button" aria-expanded="false" class="nav-link"><span><i class="notika-icon notika-chat"></i></span> Historia</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav notika-top-nav">
+                        <li class="nav-item dropdown">
+                            <a href="{% url 'Home' %}" role="button" aria-expanded="false" class="nav-link"><span><i class="notika-icon notika-house"></i></span> Inicio</a>
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="width: 60%;">
+                    <div class="header-top-menu">
+                        
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item dropdown">
+                                <a href="{% url 'Login' %}" role="button" aria-expanded="false" class="nav-link"><span><i class="notika-icon notika-support"></i></span></a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+    
+    <!--Contenido Cambiante-->
+    {% block content %}
+
+    {% endblock %}
+    
+    <!-- Start Footer area-->
+    <footer style="position: fixed; left: 0; bottom: 0; width: 100%;">
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>Copyright | TorogoZtats © 2013 
+. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <!-- End Footer area-->
+    <!-- jquery
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/bootstrap.min.js' %}"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/wow.min.js' %}"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/jquery-price-slider.js' %}"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/owl.carousel.min.js' %}"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/jquery.scrollUp.min.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/meanmenu/jquery.meanmenu.js' %}"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/plugins.js' %}"></script>
+    <!-- Data Table JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/data-table/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'TorogoZtatsWebApp/js/data-table/data-table-act.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static 'TorogoZtatsWebApp/js/main.js' %}"></script>
+	
+</body>
+
+</html>
