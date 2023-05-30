@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+
+</div>
     <!-- Data Table area Start-->
     <div class="data-table-area" style="margin: 40px 0px;">
         <div class="container">
@@ -56,4 +58,18 @@
         </div>
     </div>
     <!-- Data Table area End-->
-{% endblock %}
+    <!-- Start Chart area-->
+
+
+    <div style="display: block;">
+    
+        <canvas id="myChartLine"></canvas>
+    </div>
+    <div style="width: 400px;">
+    <canvas id="myChartBar"></canvas> 
+   
+</div>
+
+    <!-- Chart area End-->
+
+    {% endblock %}
