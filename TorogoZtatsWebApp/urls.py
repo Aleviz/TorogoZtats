@@ -12,4 +12,5 @@ urlpatterns = [
     path('canasta/', views.get_canasta, name='get_canasta'),
     path('productos/', views.get_productos, name='get_productos'),
 
+     path('filtrado/', views.filtrado),  
 ]

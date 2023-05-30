@@ -1,11 +1,77 @@
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 
-from TorogoZtatsWebApp.models import CanastaBasica, Producto
+from TorogoZtatsWebApp.models import CanastaBasica, Producto, Categoria
 
 def home(request):
     canastas_basicas=CanastaBasica.objects.all()  
     return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
+
+
+
+def filtrado(request):
+    
+    # FILTRADO SOLO DE PRODUCTO
+    if request.GET["pro"]:
+        pro = request.GET["pro"]
+        p = Producto.objects.get(nombre_producto=pro)
+        canasta_basica = CanastaBasica.objects.filter(producto=p)
+        for canasta in canasta_basica:
+            print(canasta.agno)
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+
+    # FILTRADO SOLO DE CATEGORIA
+    elif request.GET["cat"] :
+        cat = request.GET["cat"]
+        c = Categoria.objects.get(nombre_categoria=cat)
+        p = Producto.objects.get(categoria = c)
+        canasta_basica = CanastaBasica.objects.filter(producto=p)
+        for canasta in canasta_basica:
+            print(canasta.agno)
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+    
+
+    # FILTRADO SOLO DE AÑO
+    elif request.GET["year"] :
+        year = request.GET["year"]
+        canasta_basica = CanastaBasica.objects.filter(agno=year)
+        for canasta in canasta_basica:
+            print(canasta.agno)
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+
+
+    # FILTRADO DE PRODUCTO Y AÑO
+    elif request.GET["pro"] and request.GET["year"]  :
+        
+        pro = request.GET["pro"]
+        p = Producto.objects.get(nombre_producto=pro)
+        year = request.GET["year"]
+
+        canasta_basica = CanastaBasica.objects.filter(producto=p).filter(agno=year)
+
+        for canasta in canasta_basica:
+            print(canasta.agno)
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+    
+    # FILTRADO DE CATEGORIA Y AÑO
+    elif request.GET["cat"] and request.GET["year"]  :
+        cat = request.GET["cat"]
+        c = Categoria.objects.get(nombre_categoria=cat)
+        p = Producto.objects.get(categoria = c)
+    
+        year = request.GET["year"]
+
+        canasta_basica = CanastaBasica.objects.filter(producto=p).filter(agno=year)
+
+        for canasta in canasta_basica:
+            print(canasta.agno)
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+    
+
+    else:
+        mensaje = "no hay"
+        return HttpResponse(mensaje)
+
 
 def about(request):
     return render(request, "TorogoZtatsWebApp/about.html")

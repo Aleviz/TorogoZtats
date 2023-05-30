@@ -4,6 +4,23 @@
 
 {% block content %}
 
+<div>
+    <form action="/filtrado/" method="GET">
+        <label for="pro">Producto:</label>
+        <input type="text" name="pro">
+
+        <label for="cat">Categoria:</label>
+        <input type="text" name="cat">
+         
+        
+        <label for="year">Año:</label>
+        <input type="text" name="year">
+         
+
+
+    <input type="submit" value="Buscar"/>
+</form>
+
 </div>
     <!-- Data Table area Start-->
     <div class="data-table-area" style="margin: 40px 0px;">
