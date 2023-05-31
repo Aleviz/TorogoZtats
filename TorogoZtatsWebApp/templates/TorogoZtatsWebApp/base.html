@@ -10,9 +10,6 @@
     <title>TorogoZtats - Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'TorogoZtatsWebApp/img/favicon.ico' %}">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -49,6 +46,7 @@
 		============================================ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 
+    <link rel="stylesheet" href="{% static 'TorogoZtatsWebApp/tz_js/chart.css' %}">
 </head>
 
 <body>
@@ -105,7 +103,7 @@
     {% endblock %}
     
     <!-- Start Footer area-->
-    <footer style="position: fixed; left: 0; bottom: 0; width: 100%;">
+    <footer style=" left: 0; bottom: 0; width: 100%;">
     <div class="footer-copyright-area">
         <div class="container">
             <div class="row">

@@ -4,36 +4,21 @@
 
 {% block content %}
 
-<div>
-    <form action="/filtrado/" method="GET">
-        <label for="pro">Producto:</label>
-        <input type="text" name="pro">
-
-        <label for="cat">Categoria:</label>
-        <input type="text" name="cat">
-         
-        
-        <label for="year">Año:</label>
-        <input type="text" name="year">
-         
-
-
-    <input type="submit" value="Buscar"/>
-</form>
-
-</div>
-    <!-- Data Table area Start-->
-    <div class="data-table-area" style="margin: 40px 0px;">
+<!-- Data Table area Start-->
+<div class="ctable">
+    <div class="data-table-area cctable" style="margin: 40px 0px;  width: 70vw;  height: calc(58vh - 40px);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="data-table-list">
+                    <div class="data-table-list" style="  width: 49vw;
+                    height: calc(86vh - 37px);">
                         <div class="basic-tb-hd">
                             <h2>Canasta Basica Salvadoreña</h2>
                             <p>Datos de los precios de la canasta basica de los ultimos 5 años en EL SALVADOR</p>
+
                         </div>
-                        <div class="table-responsive">
-                            
+                        <div class="table-responsive" style="  width: 47vw;
+                        height: calc(74vh - 40px);">
 
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
@@ -45,7 +30,7 @@
                                         <th>Año</th>
                                     </tr>
                                 </thead>
-                                
+
                                 {% for cb in canastas_basicas %}
                                 <tbody>
                                     <tr>
@@ -60,12 +45,7 @@
 
                                 <tfoot>
                                     <tr>
-                                        <th>Producto</th>
-                                        <th>Categoria</th>
-                                        <th>Unidad de Medida</th>
-                                        <th>Precio</th>
-                                        <th>Año</th>
-                                      </tr>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -74,19 +54,40 @@
             </div>
         </div>
     </div>
-    <!-- Data Table area End-->
-    <!-- Start Chart area-->
+    <div class="cctable x">
+
+        <div class="xd">
+            <form style="align-items: center;    " action="/filtrado/" method="GET">
+                <label for="pro">Producto:</label>
+                <input type="text" name="pro">
+
+                <label for="cat">Categoria:</label>
+                <input type="text" name="cat">
 
 
-    <div style="display: block;">
-    
+                <label for="year">Año:</label>
+                <input type="text" name="year">
+
+
+
+                <input type="submit" value="Filtrar" />
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
+<!-- Start Chart area-->
+
+
+<div class="chartCard">
+    <div class="chartBox">
         <canvas id="myChartLine"></canvas>
     </div>
-    <div style="width: 400px;">
-    <canvas id="myChartBar"></canvas> 
-   
+    <div class="chartBox">
+        <canvas id="myChartBar"></canvas>
+    </div>
 </div>
 
-    <!-- Chart area End-->
+<!-- Chart area End-->
 
-    {% endblock %}
+{% endblock %}

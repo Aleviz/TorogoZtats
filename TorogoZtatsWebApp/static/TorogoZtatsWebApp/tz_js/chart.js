@@ -1,5 +1,10 @@
 window.addEventListener("load", async () => {
 
+  console.log("hola dentro de chart.js")
+  // Obtener la URL base
+var baseUrl = window.location.origin;
+
+
     //JSON ID PRODUCTO
     var dataIDP1;
     var listIDP =[];
@@ -8,7 +13,7 @@ window.addEventListener("load", async () => {
         JSON - CANASTA BASICA
       ==========================*/
  
-    const responseIDP = await fetch("./canasta");
+    const responseIDP = await fetch("http://localhost:8000/canasta/");
     dataIDP = await responseIDP.json();
     if(dataIDP.message == "Success"){
       dataIDP1 = dataIDP;
@@ -25,7 +30,7 @@ window.addEventListener("load", async () => {
     
     var dataNP1;
     var listNP =[];
-    const responseNP = await fetch("./productos");
+    const responseNP = await fetch("http://localhost:8000/productos");
     dataNP = await responseNP.json();
     if(dataNP.message == "Success"){
         dataNP1 = dataNP;
@@ -37,34 +42,15 @@ window.addEventListener("load", async () => {
        }
 
 
-/*Posible funcionamiento a futuro
 
-listPrecio = [];
-listProducto = [];
-for(var i=0; i<listIDP.length;i++){
-  for(var j=0; j<listNP.length;j++){
-    if(listIDP[i].producto_id == listNP[j].id){
-    listPrecio.push(listIDP[i].precio);
-    listProducto.push(listNP[j].nombre_producto);
-    console.log("id producto en cb = "+listIDP[i].producto_id + " -  id producto en p = "+listNP[j].id);
-    console.log("i = "+i);
-    console.log("j== "+j);
-    }else{
- 
-    }
-  }
-}
-
-console.log(listProducto);
-*/
-
-
+       
 listPrecio =[];
-listYear =[];
+listYear =[2018,2019,2020,2021,2022];
+
 var nameProducto;
 for(var i=0; i<listIDP.length;i++){
   listPrecio.push(listIDP[i].precio);
-  listYear.push(listIDP[i].agno);
+  
   for(var j=0; j<listNP.length;j++){
       if(listIDP[i].producto_id == listNP[j].id){
         nameProducto = listNP[j].nombre_producto;
@@ -73,6 +59,18 @@ for(var i=0; i<listIDP.length;i++){
     
 }
 
+
+
+console.log("y= "+listYear.length);
+rgbRandom=[];
+for(var i=0; i < nameProducto.length; i++){
+  min = Math.ceil(0);
+  max = Math.floor(255);
+  color = "rgb("+ (Math.floor(Math.random() *(max - min + 1))+min)+","+(Math.floor(Math.random() *(max - min + 1))+min)+","+(Math.floor(Math.random() *(max - min + 1))+min)+",0.5)";
+  rgbRandom.push(color);
+}
+
+console.log("color = "+color);
 
 
   /*============================================================================
@@ -85,15 +83,14 @@ for(var i=0; i<listIDP.length;i++){
         labels:  listYear,
         datasets: [
           {
-            label: nameProducto,
-            data: listPrecio,
-            backgroundColor: [
-              "rgb(66, 134, 244,0.5)",
-              "rgb(74, 135, 72,0.5)",
-              "rgb(229, 89, 50,0.5)",
-            ],
-          },
-        ],
+            label: ['Frijol'],
+            data: [listIDP[0].precio, listIDP[1].precio, listIDP[3].precio, listIDP[4].precio, listIDP[5].precio ],
+            backgroundColor: rgbRandom,
+          },{
+            label: ['Leche'],
+            data: [listIDP[2].precio,listIDP[6].precio,listIDP[7].precio,listIDP[8].precio,listIDP[9].precio],
+            backgroundColor: rgbRandom,
+          }],
       },
       options: {
         scales: {
@@ -108,10 +105,13 @@ for(var i=0; i<listIDP.length;i++){
       },
     });
 
-
+var x="";
   /*============================================================================
      GRAFICA DE LINEA, DE LOS PRECIOS QUE HA TENIDO [x] PRODUCTO EN LOS 5 AÑOS
     ============================================================================*/
+
+
+
     var ctx = document.getElementById("myChartLine").getContext("2d");
     var myChart = new Chart(ctx, {
       type: "line",
@@ -119,13 +119,22 @@ for(var i=0; i<listIDP.length;i++){
         labels:  listYear,
         datasets: [
           {
-            label: nameProducto,
-            data: listPrecio,
+            label: listNP[0].nombre_producto,
+            data: [listIDP[2].precio,listIDP[6].precio,listIDP[7].precio,listIDP[8].precio,listIDP[9].precio],
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: rgbRandom[0],
+            borderWidth: 5,
             tension: 0.1
 
-          },
+          },{
+            label: listNP[1].nombre_producto,
+            data: [listIDP[0].precio, listIDP[1].precio, listIDP[3].precio, listIDP[4].precio, listIDP[5].precio ],
+            fill: false,
+            borderColor: rgbRandom[1],
+            borderWidth: 5,
+            tension: 0.1
+
+          }
         ],
       },      options: {
         scales: {

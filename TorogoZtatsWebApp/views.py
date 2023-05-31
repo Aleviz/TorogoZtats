@@ -1,43 +1,47 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+
 from django.http import JsonResponse
 
 from TorogoZtatsWebApp.models import CanastaBasica, Producto, Categoria
 
+canasta_basica = CanastaBasica
+
 def home(request):
-    canastas_basicas=CanastaBasica.objects.all()  
+    global canastas_basicas
+    canastas_basicas = CanastaBasica.objects.all()  
     return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
 
 
 
 def filtrado(request):
-    
+    global canastas_basicas
     # FILTRADO SOLO DE PRODUCTO
     if request.GET["pro"]:
         pro = request.GET["pro"]
         p = Producto.objects.get(nombre_producto=pro)
-        canasta_basica = CanastaBasica.objects.filter(producto=p)
-        for canasta in canasta_basica:
+        canastas_basicas = CanastaBasica.objects.filter(producto=p)
+        for canasta in canastas_basicas:
             print(canasta.agno)
-        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
 
     # FILTRADO SOLO DE CATEGORIA
     elif request.GET["cat"] :
         cat = request.GET["cat"]
         c = Categoria.objects.get(nombre_categoria=cat)
         p = Producto.objects.get(categoria = c)
-        canasta_basica = CanastaBasica.objects.filter(producto=p)
-        for canasta in canasta_basica:
+        canastas_basicas = CanastaBasica.objects.filter(producto=p)
+        for canasta in canastas_basicas:
             print(canasta.agno)
-        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
     
 
     # FILTRADO SOLO DE AÑO
     elif request.GET["year"] :
         year = request.GET["year"]
-        canasta_basica = CanastaBasica.objects.filter(agno=year)
-        for canasta in canasta_basica:
+        canastas_basicas = CanastaBasica.objects.filter(agno=year)
+        for canasta in canastas_basicas:
             print(canasta.agno)
-        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
 
 
     # FILTRADO DE PRODUCTO Y AÑO
@@ -47,11 +51,11 @@ def filtrado(request):
         p = Producto.objects.get(nombre_producto=pro)
         year = request.GET["year"]
 
-        canasta_basica = CanastaBasica.objects.filter(producto=p).filter(agno=year)
+        canastas_basicas = CanastaBasica.objects.filter(producto=p).filter(agno=year)
 
         for canasta in canasta_basica:
             print(canasta.agno)
-        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
     
     # FILTRADO DE CATEGORIA Y AÑO
     elif request.GET["cat"] and request.GET["year"]  :
@@ -61,16 +65,16 @@ def filtrado(request):
     
         year = request.GET["year"]
 
-        canasta_basica = CanastaBasica.objects.filter(producto=p).filter(agno=year)
+        canastas_basicas = CanastaBasica.objects.filter(producto=p).filter(agno=year)
 
-        for canasta in canasta_basica:
+        for canasta in canastas_basicas:
             print(canasta.agno)
-        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canasta_basica})
+        return render(request, "TorogoZtatsWebApp/home.html", {"canastas_basicas":canastas_basicas})
     
 
     else:
         mensaje = "no hay"
-        return HttpResponse(mensaje)
+        return redirect('/');
 
 
 def about(request):
@@ -86,7 +90,8 @@ def panel_administrativo(request):
     return render(request, "TorogoZtatsWebApp/administracion.html")
 
 def get_canasta(_request):
-    canasta = list(CanastaBasica.objects.values())
+    global canastas_basicas
+    canasta = list(canastas_basicas.values())
     if(len(canasta) > 0):
         data ={'message':"Success",'canasta':canasta}
     else:
