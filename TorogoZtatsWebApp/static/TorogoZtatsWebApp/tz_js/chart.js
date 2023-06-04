@@ -1,5 +1,81 @@
 window.addEventListener("load", async () => {
 
+
+/*===========================
+     OBTENER PRODUCTO
+    ========================*/
+  
+    var producto = "";
+
+    // Obtener la URL actual
+    var url = window.location.href;
+    
+    // Buscar el índice del parámetro "pro" en la URL
+    var startIndex = url.indexOf("?pro=");
+    
+    if (startIndex !== -1) {
+      // Encontrar el índice del símbolo '&' después del valor del parámetro "pro"
+      var endIndex = url.indexOf("&", startIndex);
+    
+      // Si no se encuentra el símbolo '&', utilizar la longitud total de la URL
+      if (endIndex === -1) {
+        endIndex = url.length;
+      }
+    
+      // Extraer la palabra después del igual '=' hasta el símbolo '&'
+      producto = url.substring(startIndex + 5, endIndex);
+    
+      console.log("La palabra capturada es: " + producto);
+    } else {
+      console.log("No se encontró el parámetro 'pro' en la URL.");
+    }
+    
+    /*===========================
+         OBTENER CATEGORIA
+        ========================*/
+      
+        var catValue = "";
+    
+        // Obtener la URL actual
+        var url = window.location.href;
+        
+        var urlObj = new URL(url);
+    
+        // Obtener el valor del parámetro "cat"
+        catValue = urlObj.searchParams.get("cat");
+        
+        if (catValue) {
+          console.log("El valor del parámetro 'cat' es: " + catValue);
+        } else {
+          console.log("No se encontró el parámetro 'cat' en la URL.");
+        }
+        
+    
+    
+        /*===========================
+         OBTENER Year
+        ========================*/
+      
+        var yearValue = "";
+    
+        // Obtener la URL actual
+        var url = window.location.href;
+        
+        var urlObj = new URL(url);
+    
+        // Obtener el valor del parámetro "cat"
+        yearValue = urlObj.searchParams.get("year");
+        
+        if (yearValue) {
+          console.log("El valor del parámetro 'year' es: " + yearValue);
+        } else {
+          console.log("No se encontró el parámetro 'year' en la URL.");
+        }
+    
+
+
+        if(catValue ==null || producto == null || yearValue==null){
+
   console.log("hola dentro de chart.js")
   // Obtener la URL base
 var baseUrl = window.location.origin;
@@ -61,6 +137,18 @@ for(var i=0; i<listIDP.length;i++){
 
 
 
+
+
+
+
+
+var busqueda;
+function capturarValor(){
+ busqueda = document.getElementById("pros").value;
+console.log("busq: "+busqueda);
+}
+
+console.log("hola");
 console.log("y= "+listYear.length);
 rgbRandom=[];
 for(var i=0; i < nameProducto.length; i++){
@@ -71,6 +159,8 @@ for(var i=0; i < nameProducto.length; i++){
 }
 
 console.log("color = "+color);
+
+
 
 
   /*============================================================================
@@ -150,4 +240,8 @@ var x="";
 
       
     });
+  }
+  else{
+    console.log("entro aca")
+  }
   });
