@@ -6,19 +6,17 @@
 
 <!-- Data Table area Start-->
 <div class="ctable">
-    <div class="data-table-area cctable" style="margin: 40px 0px;  width: 70vw;  height: calc(58vh - 40px);">
+    <div class="data-table-area" >
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="data-table-list" style="  width: 49vw;
-                    height: calc(86vh - 37px);">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="data-table-list" >
                         <div class="basic-tb-hd">
                             <h2>Canasta Basica Salvadoreña</h2>
                             <p>Datos de los precios de la canasta basica de los ultimos 5 años en EL SALVADOR</p>
 
                         </div>
-                        <div class="table-responsive" style="  width: 47vw;
-                        height: calc(74vh - 40px);">
+                        <div class="table-responsive">
 
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
@@ -54,23 +52,23 @@
             </div>
         </div>
     </div>
-    <div class="cctable x">
+    <div class="cctable x" style="margin: 10px; padding-top: 100px;">
 
         <div class="xd">
-            <form style="align-items: center;    " action="/filtrado/" method="GET">
+            <h1 style="background: white;">FILTRAR DATOS </h1>
+            <form style="align-items: center; background: white;" action="/filtrado/" method="GET">
                 <label for="pro">Producto:</label>
                 <input type="text" name="pro">
+                <br/>
 
                 <label for="cat">Categoria:</label>
                 <input type="text" name="cat">
-
-
+                <br/>
                 <label for="year">Año:</label>
                 <input type="text" name="year">
-
-
-
-                <input type="submit" value="Filtrar" />
+                <br/>
+                <center>
+                <input type="submit" value="Filtrar" /></center>
             </form>
         </div>
     </div>

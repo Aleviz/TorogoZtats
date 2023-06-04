@@ -15,15 +15,13 @@
     padding: 54px;
     border-radius: 20px;
     border: solid 3px rgba(54, 162, 235, 1);
-    background: white;
   }
   .ctable{
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 14%;
+    padding-bottom: 19%;
   }
   .x{
-    background: #fff;
     margin-top: 10%;
     margin-right: 4%;
     margin-left: -10%;
